@@ -1,0 +1,12 @@
+m=102 which are number of examples (points with labels in dataCircle.txt)
+t=50 in our case we take 50 iterations(50 Distributions) each using one weak classifier
+detection y could be only +1 or -1 
+
+first define a set of 50 weak classifiers h=h1,h2,...h50
+for D(1) use wi=1/m....wm=1/m this means each example( +ve and -ve points) contain exact same size/focus 
+now select the classifier with minimum error. meanwhile make sure if one ht gives >0.5 error you flip the sign of classification for that ht, which will make error <0.5
+use weights (for each example) for this selected weak classifier with formula of D(2) based on results of D(1), if previously some examples were detected wrongly make them of bigger focus now and correctly detected ones should have smaller size now.
+for each iteration you should have error and confidence of that Dt 
+now in the end calculate overall performance: by H. where a test example gets detected by all weak classifiers one by one resulting with confidence of that weak classifier and detected sign. now multiply sign*confidence*ht this says what detection sign has how much say in final detection.
+add all these contributions of weak classifiers and all them now the sign with more contribution is a sign alloted to that test example. 
+ 
